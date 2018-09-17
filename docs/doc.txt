@@ -1,0 +1,90 @@
+tela:
+	configuracoes,
+		custo do minuto
+	cadastro,
+		número de origem,
+		número de destino,
+		tempo da ligação,
+		data e hora da ligação,
+	lista de itens,
+		deve exibir 50 itens
+		excluir de maneira lógica
+	detalhes,
+		exibir as informações da ligação,
+		custo da ligação baseado no custo do minuto,
+		e um campo para comentário naquela ligação,
+
+	
+composer create-project --prefer-dist laravel/laravel historico-de-chamadas "5.4.*"
+Git Bash
+
+php artisan make:model Models/Chamada --migration
+
+2018_09_17_121719_create_chamadas_table.php
+
+Schema::create('chamadas', function (Blueprint $table) {
+	$table->increments('id');
+	$table->timestamps();
+
+	// CADASTRO
+	$table->string('numero_de_origem', 19)->nullable(false); // +55 (62) 98106-8439
+	$table->String('numero_de_destino', 19)->nullable(false);
+	$table->time('tempo_da_ligacao')->nullable(false);
+	$table->timestamp('data_e_hora_da_ligacao')->nullable(false);
+
+	// EXCLUSÃO LOGICA
+	$table->softDeletes();
+
+	// COMENTÁRIO DA LIGAÇÃO
+	$table->text('comentario')->nullable(false);
+});
+
+
+.env
+
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=historico_chamadas
+DB_USERNAME=postgres
+DB_PASSWORD=pactodb
+
+php.ini
+
+extension=pdo_pgsql
+extension=xmlrpc
+
+Git Bash
+
+php artisan migrate
+
+php artisan make:controller ChamadaController --resource
+
+web.php
+
+Route::resource('chamadas', 'ChamadaController');
+
+Admin/ChamadaController.php
+
+public function index()
+{
+	return HistoricoChamadaController::class;
+}
+
+public function create()
+{
+	return HistoricoChamadaController::class;
+}
+
+admin\historicoChamada\create.blade.php
+admin\historicoChamada\form.blade.php
+admin\layouts\elements\body.blade.php
+admin\layouts\default.blade.php
+
+public function create()
+{
+	// return HistoricoChamadaController::class . "@create";
+	return view('admin.historicoChamada.create');
+}
+
+https://igorescobar.github.io/jQuery-Mask-Plugin/
