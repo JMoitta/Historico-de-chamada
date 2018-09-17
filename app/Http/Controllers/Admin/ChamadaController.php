@@ -15,7 +15,9 @@ class ChamadaController extends Controller
      */
     public function index()
     {
-        return HistoricoChamadaController::class;
+        // return HistoricoChamadaController::class;
+        $pages = Page::paginate();
+        return view('admin.chamada.index', compact('pages'));
     }
 
     /**
@@ -26,7 +28,7 @@ class ChamadaController extends Controller
     public function create()
     {
         // return HistoricoChamadaController::class . "@create";
-        return view('admin.historicoChamada.create');
+        return view('admin.chamada.create');
     }
 
     /**
