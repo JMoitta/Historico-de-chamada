@@ -16,8 +16,8 @@ class ChamadaController extends Controller
     public function index()
     {
         // return HistoricoChamadaController::class;
-        $pages = Page::paginate();
-        return view('admin.chamada.index', compact('pages'));
+        $chamadas = Chamada::paginate();
+        return view('admin.chamada.index', compact('chamadas'));
     }
 
     /**
