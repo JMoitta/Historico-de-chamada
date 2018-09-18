@@ -12,6 +12,6 @@ class ChamadasTableSeeder extends Seeder
     public function run()
     {
         \DB::statement('truncate chamadas');
-        factory(App\Models\Chamada::class, 100)->create();
+        factory(App\Models\Chamada::class, 1000)->create();
     }
 }
