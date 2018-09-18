@@ -114,3 +114,9 @@ public function run()
 	\DB::statement('truncate chamadas');
 	factory(App\Models\Chamada::class, 1000)->create();
 }
+
+web.php
+
+Route::prefix('admin/configuracoes')->group(function () {
+    Route::get('', 'Admin\ConfiguracoesController@edit');
+});

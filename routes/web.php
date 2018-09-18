@@ -16,3 +16,7 @@ Route::resource('chamadas', 'Admin\ChamadaController');
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('admin/configuracoes')->group(function () {
+    Route::get('', 'Admin\ConfiguracoesController@edit');
+});
