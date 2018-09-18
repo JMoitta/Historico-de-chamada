@@ -23,7 +23,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 $factory->define(App\Models\Chamada::class, function (Faker\Generator $faker) {
-    static $password;
 
     return [
         'numero_de_origem' => $faker->tollFreePhoneNumber,
@@ -31,5 +30,10 @@ $factory->define(App\Models\Chamada::class, function (Faker\Generator $faker) {
         'tempo_da_ligacao' => $faker->time($format = 'H:i:s'),
         'data_e_hora_da_ligacao' => $faker->dateTime(),
         'comentario' => $faker->sentence($nbWords = 6)
+    ];
+});
+$factory->define(App\Models\Configuracao::class, function (Faker\Generator $faker) {
+    return [
+        'custo_do_minuto'=> 1.1
     ];
 });

@@ -154,3 +154,40 @@ admin/configuracoes/edit.blade.php
 <form>
 	{{ method_field('PUT') }}
 </form>
+
+Git Bash
+
+php artisan make:model Models/Configuracao -m
+
+Models/Configuracao
+
+protected $table = 'configuracoes';
+
+protected $fillable = [
+	'custo_do_minuto',
+];
+
+CreateConfiguracoesTable
+
+Schema::create('configuracoes', function (Blueprint $table) {
+	$table->increments('id');
+
+	$table->double('custo_do_minuto', 6, 2)->nullable(false);
+	$table->timestamps();
+});
+
+ModelFactory
+
+$factory->define(App\Models\Configuracao::class, function (Faker\Generator $faker) {
+    return [
+        'custo_do_minuto'=> 1.1
+    ];
+});
+
+ConfiguracoesTableSeeder
+
+public function run()
+{
+	\DB::statement('truncate configuracoes');
+	factory(App\Models\Configuracao::class, 1)->create();
+}
