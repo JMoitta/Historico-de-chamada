@@ -120,3 +120,16 @@ web.php
 Route::prefix('admin/configuracoes')->group(function () {
     Route::get('', 'Admin\ConfiguracoesController@edit');
 });
+
+Git Bash
+
+php artisan make:controller Admin/ConfiguracoesController
+
+public function edit()
+{
+	return view('admin.configuracoes.edit');
+}
+
+admin/configuracoes/edit.blade.php
+admin/configuracoes/form.blade.php
+

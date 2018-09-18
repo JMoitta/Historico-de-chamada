@@ -14,6 +14,6 @@ class ConfiguracoesController extends Controller
      */
     public function edit()
     {
-        ConfiguracoesController::class;
+        return view('admin.configuracoes.edit');
     }
 }
