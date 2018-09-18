@@ -133,3 +133,24 @@ public function edit()
 admin/configuracoes/edit.blade.php
 admin/configuracoes/form.blade.php
 
+web.php
+
+Route::prefix('admin/configuracoes')->group(function () {
+	Route::name('configuracoes.')->group(function () {
+	    Route::get('', 'Admin\ConfiguracoesController@edit')->name('edit');
+    	Route::put('', 'Admin\ConfiguracoesController@update')->name('update');
+	});
+});
+
+ConfiguracoesController.php
+
+ public function update(Request $request)
+{
+	return ConfiguracoesController::class . "@update";
+}
+
+admin/configuracoes/edit.blade.php
+
+<form>
+	{{ method_field('PUT') }}
+</form>

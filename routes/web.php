@@ -18,5 +18,8 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin/configuracoes')->group(function () {
-    Route::get('', 'Admin\ConfiguracoesController@edit');
+	Route::name('configuracoes.')->group(function () {
+	    Route::get('', 'Admin\ConfiguracoesController@edit')->name('edit');
+    	Route::put('', 'Admin\ConfiguracoesController@update')->name('update');
+	});
 });
