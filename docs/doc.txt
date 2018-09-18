@@ -2,13 +2,13 @@ tela:
 	configuracoes,
 		custo do minuto
 	cadastro, V
-		número de origem,
-		número de destino,
-		tempo da ligação,
-		data e hora da ligação,
+		número de origem, V
+		número de destino, V
+		tempo da ligação, V
+		data e hora da ligação, V
 	lista de itens,
-		deve exibir 50 itens
-		excluir de maneira lógica
+		deve exibir 50 itens V
+		excluir de maneira lógica V
 	detalhes,
 		exibir as informações da ligação,
 		custo da ligação baseado no custo do minuto,
@@ -88,3 +88,29 @@ public function create()
 }
 
 https://igorescobar.github.io/jQuery-Mask-Plugin/
+
+...
+
+ModelFactory.php
+
+$factory->define(App\Models\Chamada::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'numero_de_origem' => $faker->tollFreePhoneNumber,
+        'numero_de_destino' => $faker->tollFreePhoneNumber,
+        'tempo_da_ligacao' => $faker->time($format = 'H:i:s'),
+        'data_e_hora_da_ligacao' => $faker->dateTime(),
+        'comentario' => $faker->sentence($nbWords = 6)
+    ];
+});
+
+php artisan make:seeder ChamadasTableSeeder
+
+ChamadasTableSeeder.php
+
+public function run()
+{
+	\DB::statement('truncate chamadas');
+	factory(App\Models\Chamada::class, 100)->create();
+}
