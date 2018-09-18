@@ -191,3 +191,26 @@ public function run()
 	\DB::statement('truncate configuracoes');
 	factory(App\Models\Configuracao::class, 1)->create();
 }
+
+public/js/admin/configuracoes/
+
+$(document).ready(function(){
+  $('#custoDoMinuto').mask('#0.00', {reverse: true});
+});
+
+resources/views/admin/configuracoes/form.blade.php
+
+<input type="tel" name="custo_do_minuto" id="custoDoMinuto" class="form-control" 
+value="{{ number_format($configuracao->custo_do_minuto, 2) ?? '' }}" placeholder="Número de origem...">
+
+Admin\ConfiguracoesController
+
+public function update(Request $request)
+{
+	$configuracao = Configuracao::findOrFail(1);
+	$data = $request->all();
+	$data['id'] = 1;
+	$configuracao->update($data);
+	return response()->redirectToRoute('configuracoes.edit');
+}
+

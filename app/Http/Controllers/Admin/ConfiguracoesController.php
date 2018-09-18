@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Configuracao;
 
 class ConfiguracoesController extends Controller
 {
@@ -14,7 +15,9 @@ class ConfiguracoesController extends Controller
      */
     public function edit()
     {
-        return view('admin.configuracoes.edit');
+        $configuracao = Configuracao::findOrFail(1);
+
+        return view('admin.configuracoes.edit', compact('configuracao'));
     }
 
     /**
@@ -26,6 +29,10 @@ class ConfiguracoesController extends Controller
      */
     public function update(Request $request)
     {
-        return ConfiguracoesController::class . "@update";
+        $configuracao = Configuracao::findOrFail(1);
+        $data = $request->all();
+        $data['id'] = 1;
+        $configuracao->update($data);
+        return response()->redirectToRoute('configuracoes.edit');
     }
 }

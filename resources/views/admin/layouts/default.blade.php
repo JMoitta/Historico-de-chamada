@@ -27,5 +27,6 @@
     <script src="/js/app.js"></script>
     <script src="/lib/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
     <script src="/js/admin/chamada/forms.js"></script>
+    <script src="/js/admin/configuracoes/forms.js"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 {!! csrf_field() !!}
 <div class="form-group">
-    <label for="numeroDeOrigem" class="control-label col-sm-2">Custo do minuto</label>
+    <label for="custoDoMinuto" class="control-label col-sm-2">Custo do minuto</label>
     <div class="col-sm-10">
-        <input type="tel" name="custo_do_minuto" id="numeroDeOrigem" class="form-control" value="{{ $configuracoes->custo_do_minuto ?? '' }}" placeholder="Número de origem...">
+        <input type="tel" name="custo_do_minuto" id="custoDoMinuto" class="form-control" value="{{ number_format($configuracao->custo_do_minuto, 2) ?? '' }}" placeholder="Número de origem...">
     </div>
 </div>
 <div class="form-group">
