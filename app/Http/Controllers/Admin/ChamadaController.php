@@ -16,7 +16,7 @@ class ChamadaController extends Controller
     public function index()
     {
         // return HistoricoChamadaController::class;
-        $chamadas = Chamada::paginate();
+        $chamadas = Chamada::paginate(50);
         return view('admin.chamada.index', compact('chamadas'));
     }
 
@@ -40,7 +40,7 @@ class ChamadaController extends Controller
     public function store(Request $request)
     {
         Chamada::create($request->all());
-        return response()->redirectToRoute('chamada.index');
+        return response()->redirectToRoute('chamadas.index');
     }
 
     /**
@@ -85,6 +85,8 @@ class ChamadaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $chamada = Chamada::findOrFail($id);
+        $chamada->delete();
+        return response()->redirectToRoute('chamadas.index');
     }
 }
